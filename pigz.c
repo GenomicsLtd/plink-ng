@@ -383,7 +383,7 @@ void parallel_compress(char* out_fname, uint32_t do_append, uint32_t(* emitn)(ui
 #  include <sys/pstat.h>
 #endif
 
-#include "zlib-1.2.8/zlib.h" /* deflateInit2(), deflateReset(), deflate(), */
+#include <zlib.h> /* deflateInit2(), deflateReset(), deflate(), */
                         /* deflateEnd(), deflateSetDictionary(), crc32(),
                            inflateBackInit(), inflateBack(), inflateBackEnd(),
                            Z_DEFAULT_COMPRESSION, Z_DEFAULT_STRATEGY,

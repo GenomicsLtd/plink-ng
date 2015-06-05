@@ -139,7 +139,7 @@
 
 #endif // __LP64__
 
-#include "zlib-1.2.8/zlib.h"
+#include <zlib.h>
 #include "SFMT.h"
 
 // 64MB of non-workspace memory guaranteed for now

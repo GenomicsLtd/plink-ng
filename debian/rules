@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ 
+
+override_dh_clean:
+	dh_clean
+	rm -rf debian/plink2
+	rm -f plink
+
+override_dh_auto_install:
+	install -D -m 755 plink debian/plink2/usr/bin/plink2
