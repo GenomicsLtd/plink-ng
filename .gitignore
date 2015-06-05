@@ -19,4 +19,4 @@ zlib-1.2.*
 *.tmp
 *.old
 *.o
-
+.pc
