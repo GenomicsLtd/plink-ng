@@ -2,7 +2,7 @@ Source: plink-ng
 Section: science
 Priority: optional
 Maintainer: Stuart Teasdale <stuart.teasdale@genomicsplc.com>
-Build-Depends: debhelper (>= 8.0.0), zlib1g-dev, libatlas-base-dev, libblas-dev, liblapack-dev
+Build-Depends: debhelper (>= 9.0.0), zlib1g-dev, libatlas-base-dev, libblas-dev, liblapack-dev
 Standards-Version: 3.9.4
 Homepage: https://www.cog-genomics.org/plink2/dev
 
