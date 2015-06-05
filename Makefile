@@ -1,11 +1,28 @@
-# This is a bit of a mess.  Work with Makefile.std instead.
+# General-purpose Makefile for PLINK 1.90
+#
+# Compilation options:
+#   Do not link to LAPACK                    NO_LAPACK
+
+# Leave blank after "=" to disable; put "= 1" to enable
+# (when enabled, "#define NOLAPACK" must be uncommented in plink_common.h)
+NO_LAPACK =
+
+
+# should autodetect system
+SYS = UNIX
+ifdef SystemRoot
+  SYS = WIN
+else
+  UNAME := $(shell uname)
+  ifeq ($(UNAME), Darwin)
+    SYS = MAC
+  endif
+endif
 
 CFLAGS=-Wall -O2
 BLASFLAGS=-L/usr/lib64/atlas -llapack -lcblas -latlas
-BLASFLAGS64=-L/usr/lib64/atlas -llapack -lcblas -latlas
 LINKFLAGS=-lm -lpthread
-ZLIB=zlib-1.2.8/libz.so.1.2.8
-ARCH64=-arch x86_64
+ZLIB=-lz
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
@@ -18,16 +35,6 @@ ifeq ($(UNAME), Darwin)
   BLASFLAGS64=-framework Accelerate
   LINKFLAGS=-ldl
   ZLIB=zlib-1.2.8/libz.a
-  ZLIB64=zlib-1.2.8/libz-64.a
-else
-  ifeq ($(UNAME), MINGW32_NT-6.2)
-    ARCH64=
-    BLASFLAGS=-Wl,-Bstatic -L. lapack/liblapack.a -L. lapack/librefblas.a
-    BLASFLAGS64=-Wl,-Bstatic -L. lapack/liblapack-64.a -L. lapack/librefblas-64.a
-    LINKFLAGS=-lm -static-libgcc
-    ZLIB=zlib-1.2.8/libz.a
-    ZLIB64=zlib-1.2.8/libz-64.a
-  endif
 endif
 
 CSRC = plink.c plink_assoc.c plink_calc.c plink_cluster.c plink_cnv.c plink_common.c plink_data.c plink_dosage.c plink_family.c plink_filter.c plink_glm.c plink_help.c plink_homozyg.c plink_lasso.c plink_ld.c plink_matrix.c plink_misc.c plink_perm.c plink_rserve.c plink_set.c plink_stats.c SFMT.c dcdflib.c pigz.c yarn.c hfile.c bgzf.c
