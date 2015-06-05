@@ -1,12 +1,10 @@
 Source: plink-ng
-Section: unknown
+Section: science
 Priority: optional
 Maintainer: Stuart Teasdale <stuart.teasdale@genomicsplc.com>
 Build-Depends: debhelper (>= 8.0.0), zlib1g-dev, libatlas-base-dev, libblas-dev, liblapack-dev
 Standards-Version: 3.9.4
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://git.debian.org/collab-maint/plink-ng.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/plink-ng.git;a=summary
+Homepage: https://www.cog-genomics.org/plink2/dev
 
 Package: plink2
 Architecture: any
