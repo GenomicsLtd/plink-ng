@@ -527,7 +527,6 @@ int32_t flex_pzwrite_close_null(Pigz_state* ps_ptr, char* writep) {
   #include <zlib.h>
 #else
   #include "zlib-1.2.8/zlib.h" /* deflateInit2(), deflateReset(), deflate(), */
-#include <zlib.h> /* deflateInit2(), deflateReset(), deflate(), */
                         /* deflateEnd(), deflateSetDictionary(), crc32(),
                            inflateBackInit(), inflateBack(), inflateBackEnd(),
                            Z_DEFAULT_COMPRESSION, Z_DEFAULT_STRATEGY,
