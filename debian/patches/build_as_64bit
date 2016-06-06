@@ -1,13 +1,13 @@
 Index: plink-ng/Makefile
 ===================================================================
---- plink-ng.orig/Makefile	2015-10-29 13:33:38.641553931 +0000
-+++ plink-ng/Makefile	2015-10-29 13:34:37.225836591 +0000
-@@ -37,7 +37,7 @@
- 	g++ -c $(CFLAGS) $(ARCH64) -o $@ $<
+--- plink-ng.orig/Makefile	2016-06-06 13:30:17.117389136 +0100
++++ plink-ng/Makefile	2016-06-06 13:30:44.317486122 +0100
+@@ -45,7 +45,7 @@
+ 	g++ -x c++ -c $(CFLAGS) $(ARCH64) -o $@ $<
  
  plink: $(SRC)
--	g++ $(CFLAGS) $(SRC) -m32 -o plink $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
-+	g++ $(CFLAGS) $(SRC) -o plink $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
+-	g++ -x c++ $(CFLAGS) $(SRC) -m32 -x none -o plink $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
++	g++ -x c++ $(CFLAGS) $(SRC) -x none -o plink $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
  
  plinkw: $(SRC)
  	g++ $(CFLAGS) $(SRC) -c

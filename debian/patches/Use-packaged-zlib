@@ -2,9 +2,13 @@ Description: Use systrem zlib
  Don't download a random zlib, dynamically link against the OS provided version 
 Index: plink-ng/Makefile
 ===================================================================
---- plink-ng.orig/Makefile	2015-10-29 12:29:01.298834022 +0000
-+++ plink-ng/Makefile	2015-10-29 12:29:43.843031201 +0000
-@@ -4,7 +4,7 @@
+--- plink-ng.orig/Makefile	2016-06-06 13:26:17.224539505 +0100
++++ plink-ng/Makefile	2016-06-06 13:29:49.229289829 +0100
+@@ -1,10 +1,10 @@
+ # This is a bit of a mess.  Work with Makefile.std instead.
+ 
+-CFLAGS=-Wall -O2
++CFLAGS=-Wall -O2 -DDYNAMIC_ZLIB
  BLASFLAGS=-L/usr/lib64/atlas -llapack -lcblas -latlas
  BLASFLAGS64=-L/usr/lib64/atlas -llapack -lcblas -latlas
  LINKFLAGS=-lm -lpthread
@@ -15,8 +19,8 @@ Index: plink-ng/Makefile
  UNAME := $(shell uname)
 Index: plink-ng/Makefile.std
 ===================================================================
---- plink-ng.orig/Makefile.std	2015-10-29 12:29:01.298834022 +0000
-+++ plink-ng/Makefile.std	2015-10-29 12:30:11.203157943 +0000
+--- plink-ng.orig/Makefile.std	2016-06-06 13:26:17.224539505 +0100
++++ plink-ng/Makefile.std	2016-06-06 13:26:17.220539491 +0100
 @@ -22,7 +22,7 @@
  CFLAGS=-Wall -O2
  BLASFLAGS=-L/usr/lib64/atlas -llapack -lcblas -latlas
@@ -28,8 +32,8 @@ Index: plink-ng/Makefile.std
    GCC_GTEQ_43 := $(shell expr `g++ -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/'` \>= 40300)
 Index: plink-ng/dose2plink.c
 ===================================================================
---- plink-ng.orig/dose2plink.c	2015-10-29 12:29:01.298834022 +0000
-+++ plink-ng/dose2plink.c	2015-10-29 12:29:01.294834003 +0000
+--- plink-ng.orig/dose2plink.c	2016-06-06 13:26:17.224539505 +0100
++++ plink-ng/dose2plink.c	2016-06-06 13:26:17.220539491 +0100
 @@ -96,7 +96,7 @@
    #endif
  #endif
@@ -39,29 +43,3 @@ Index: plink-ng/dose2plink.c
  
  #ifdef __APPLE__
    #include <sys/sysctl.h>
-Index: plink-ng/pigz.c
-===================================================================
---- plink-ng.orig/pigz.c	2015-10-29 12:29:01.298834022 +0000
-+++ plink-ng/pigz.c	2015-10-29 12:29:01.294834003 +0000
-@@ -513,7 +513,7 @@
- #  include <sys/pstat.h>
- #endif
- 
--#include "zlib-1.2.8/zlib.h" /* deflateInit2(), deflateReset(), deflate(), */
-+#include <zlib.h> /* deflateInit2(), deflateReset(), deflate(), */
-                         /* deflateEnd(), deflateSetDictionary(), crc32(),
-                            inflateBackInit(), inflateBack(), inflateBackEnd(),
-                            Z_DEFAULT_COMPRESSION, Z_DEFAULT_STRATEGY,
-Index: plink-ng/plink_common.h
-===================================================================
---- plink-ng.orig/plink_common.h	2015-10-29 12:29:01.298834022 +0000
-+++ plink-ng/plink_common.h	2015-10-29 12:29:01.294834003 +0000
-@@ -146,7 +146,7 @@
- 
- #endif // __LP64__
- 
--#include "zlib-1.2.8/zlib.h"
-+#include <zlib.h>
- #include "SFMT.h"
- 
- // 64MB of non-workspace memory guaranteed for now

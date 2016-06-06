@@ -1,3 +1,9 @@
+plink-ng (1.90~b3z3.37-1) unstable; urgency=medium
+
+  * New upstream version 
+
+ -- Stuart Teasdale <stu@ukulele.oxford.genomicsltd.com>  Mon, 06 Jun 2016 12:01:16 +0100
+
 plink-ng (1.90~b3z-1) unstable; urgency=medium
 
   * New upstream release
