@@ -1,3 +1,9 @@
+plink-ng (1.90~b3z3.37-1xenial1) xenial; urgency=medium
+
+  * rebuild for xenial 
+
+ -- Stuart Teasdale <stu@oxford.genomicsplc.com>  Tue, 06 Mar 2018 11:00:29 +0000
+
 plink-ng (1.90~b3z3.37-1) unstable; urgency=medium
 
   * New upstream version 
