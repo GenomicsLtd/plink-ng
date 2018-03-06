@@ -9,6 +9,7 @@
 
 override_dh_clean:
 	dh_clean
+	make clobber
 	rm -rf debian/plink2
 	rm -f plink
 
